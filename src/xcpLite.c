@@ -1111,7 +1111,7 @@ void XcpCommand( const uint32_t* cmdData, uint16_t cmdLen )
                 gXcp.CrmLen = CRM_GET_DAQ_EVENT_INFO_LEN;
                 CRM_GET_DAQ_EVENT_INFO_PROPERTIES = DAQ_EVENT_PROPERTIES_DAQ | DAQ_EVENT_PROPERTIES_EVENT_CONSISTENCY;
 #ifdef XCP_ENABLE_PACKED_MODE
-                if (ApplXcpEventList[event].sampleCount) CRM_GET_DAQ_EVENT_INFO_PROPERTIES |= DAQ_EVENT_PROPERTIES_PACKED;
+                if (event->sampleCount) CRM_GET_DAQ_EVENT_INFO_PROPERTIES |= DAQ_EVENT_PROPERTIES_PACKED;
 #endif
                 // if (event->size) CRM_GET_DAQ_EVENT_INFO_PROPERTIES |= DAQ_EVENT_PROPERTIES_EXT; @@@@ V1.6
                 CRM_GET_DAQ_EVENT_INFO_MAX_DAQ_LIST = 0xFF;
