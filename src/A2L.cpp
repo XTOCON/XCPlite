@@ -325,8 +325,8 @@ void A2L::create_XCP_IF_DATA(BOOL tcp, const uint8_t* addr, uint16_t port) {
 
 		fprintf(file, "/begin EVENT \"%s\" \"%s\" 0x%X DAQ 0xFF %u %u %u CONSISTENCY DAQ", e.name, shortName, i, e.timeCycle, e.timeUnit, e.priority);
 #ifdef XCP_ENABLE_PACKED_MODE
-		if (eventList[i].sampleCount != 0) {
-			fprintf(file, " /begin DAQ_PACKED_MODE ELEMENT_GROUPED STS_LAST MANDATORY %u /end DAQ_PACKED_MODE", eventList[i].sampleCount);
+		if (e.sampleCount != 0) {
+			fprintf(file, " /begin DAQ_PACKED_MODE ELEMENT_GROUPED STS_LAST MANDATORY %u /end DAQ_PACKED_MODE", e.sampleCount);
 		}
 #endif
 		fprintf(file, " /end EVENT\n");
