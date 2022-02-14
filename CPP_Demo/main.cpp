@@ -128,6 +128,7 @@ int32_t par_int32 = -32;
 int64_t par_int64 = -64;
 float par_float = 0.32f;
 double par_double = 0.64;
+double test_Measurement = 123.456;
 
 
 int main(int argc, char* argv[]) {
@@ -154,11 +155,12 @@ int main(int argc, char* argv[]) {
     a2l->createParameter(par_float, "", "");
     a2l->createParameter(par_double, "", "");
     a2l->createParameterGroup("TestParameters", 11, "gDebugLevel", "par_int8", "par_int16", "par_int32", "par_int64", "par_uint8", "par_uint16", "par_uint32", "par_uint64", "par_float", "par_double");
-    
+    a2l->createMeasurement(test_Measurement ,"");
 
 
     // Create 10 different SigGen signal generator task instances with calibration parameters and dynamic addressing
     // The constructor of SigGen will create an instance amd an associated XCP event
+    /*
     SigGen* sigGen[10];
     for (int i = 0; i <= 9; i++) {
         string* s = new string("SigGen"); s->append(to_string(i+1));
@@ -167,12 +169,13 @@ int main(int argc, char* argv[]) {
     
     // Create A2L description for class SigGen, use any instance to do this, function cant be static
     sigGen[0]->a2lCreateTypedef();
+    */
 
-
+    /*
     // Create virtual instances of pMinSigGen and pMaxSigGen 
     minSigGenEvent = new XcpDynObject("pMinSigGen", SigGen);
     maxSigGenEvent = new XcpDynObject("pMaxSigGen", SigGen);
-
+    */
 
     // Finalize and close A2l (otherwise it will be closed later on connect)
     xcp->closeA2L();
@@ -181,6 +184,7 @@ int main(int argc, char* argv[]) {
     printf("\nPress ESC to stop\n");
     for (;;) {
         sleepMs(100);
+        test_Measurement++;
         if (!xcp->status()) { printf("\nXCP server failed\n");  break;  } // Check if the XCP server is running
         if (_kbhit()) {  if (_getch() == 27) break;  } // Stop on ESC
     }
