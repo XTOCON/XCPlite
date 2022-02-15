@@ -751,7 +751,9 @@ static void XcpEvent_(uint16_t event, uint8_t* base, uint64_t clock)
 #ifdef XCP_ENABLE_PACKED_MODE
                 if (sc>1) n *= sc; // packed mode
 #endif
-                memcpy((uint8_t*)d, &base[OdtEntryAddr(e)], n);
+                uint8_t addr = OdtEntryAddr(e);
+                uint8_t *src = &base[addr];
+                memcpy((uint8_t*)d, src, n);
                 d += n;
                 e++;
             } // ODT entry
